@@ -39,29 +39,28 @@ public class Email {
        }
     }
     private Boolean isValid(String password){
-        if(password.length()<8){
+        Boolean capitalLetter = false;
+        Boolean smallLetter = false;
+        Boolean digit = false;
+        Boolean specialCharacter = false;
+
+        // checking length of password
+        if (password.length() < 8) {
             return false;
         }
-        Boolean capitalLetter=false;
-        Boolean smallLetter=false;
-        Boolean number=false;
-        Boolean specialCharacter=false;
-        for(int i=0;i<password.length();i++){
-            char val=password.charAt(i);
-            if(val>='a' && val<='z'){
-                smallLetter=true;
-            }
-            else if(val >='A' && val<='Z'){
-                capitalLetter=true;
-            }
-            else if(val >=0 && val<=9){
-                number=true;
-            }
-            else{
-                specialCharacter=true;
-            }
+
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                capitalLetter = true;
+            } else if (ch >= 'a' && ch <= 'z') {
+                smallLetter = true;
+            } else if (ch >= '0' && ch <= '9') {
+                digit = true;
+            } else specialCharacter = true;
         }
-        if(capitalLetter && smallLetter && number & specialCharacter){
+
+        if (capitalLetter && smallLetter && digit && specialCharacter) {
             return true;
         }
         return false;
